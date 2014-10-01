@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="imgur-java-dependecy">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpclient-4.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpcore-4.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-annotations-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.4.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
