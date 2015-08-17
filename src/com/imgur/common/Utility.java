@@ -15,4 +15,18 @@ public class Utility {
         }
         return isNullOrEmpty;
     }
+
+    public static boolean sTob(String sInput) {
+        boolean bOutput = false;
+        if (sInput != null && !"".equalsIgnoreCase(sInput)) {
+            if ("true".equalsIgnoreCase(sInput) || "1".equalsIgnoreCase(sInput)
+                    || "yes".equalsIgnoreCase(sInput)
+                    || "y".equalsIgnoreCase(sInput)
+                    || "on".equalsIgnoreCase(sInput)) {
+                bOutput = true;
+            }
+        }
+
+        return bOutput;
+    }
 }

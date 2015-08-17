@@ -34,6 +34,9 @@ public class ImgurRestResponse {
     /** The content type. */
     private String contentType;
 
+    public ImgurRestResponse() {
+        this.error = true;
+    }
     /**
      * Instantiates a new twilio rest response.
      *

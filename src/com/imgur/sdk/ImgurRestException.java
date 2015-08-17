@@ -1,5 +1,9 @@
 package com.imgur.sdk;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -59,16 +63,29 @@ public class ImgurRestException extends Exception{
         String moreInfo = "";
         int errorCode = 0;
         if (response.isJson()) {
-            message = (String) data.get("message");
 
-            if (data.get("code") != null) {
-                errorCode = (Integer) data.get("code");
+            ObjectMapper exceptionMapper = new ObjectMapper();
+
+            try {
+                JsonNode jsonExceptionNode = exceptionMapper.readTree(response.getResponseText());
+                JsonNode jsonExceptionData = jsonExceptionNode.findValue("data");
+
+                if(jsonExceptionData!=null){
+                    JsonNode jsonError = jsonExceptionData.findValue("error");
+                    message = jsonError.asText("Oops!! We were unable to process your request at this time (imgur-java-error)");
+                }
+
+                JsonNode jsonExceptionStatusCode = jsonExceptionNode.findValue("status");
+                if(jsonExceptionStatusCode!=null){
+                    errorCode = jsonExceptionStatusCode.asInt();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            if (data.get("more_info") != null) {
-                moreInfo = (String) data.get("more_info");
-            }
+            moreInfo = "";
         }
-
+        System.out.println("message:"+message+ " errorCode:"+errorCode+ " moreInfo:"+moreInfo);
         return new ImgurRestException(message, errorCode, moreInfo);
     }
 
